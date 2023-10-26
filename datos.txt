@@ -1,0 +1,4 @@
+https://pokeapi.co/api/v2/pokemon
+Por id: "https://pokeapi.co/api/v2/pokemon/{id}"
+Por nombre: "https://pokeapi.co/api/v2/pokemon/{name}"
+Por tipo: "https://pokeapi.co/api/v2/type"
