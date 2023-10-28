@@ -2,7 +2,7 @@ const {DataTypes} = require("sequelize");
 
 module.exports = (sequelize) =>{
     // Se define el modelo
-    sequelize.define("type",{
+    sequelize.define("region",{
         id:{
             type: DataTypes.UUID,
             primaryKey: true,

@@ -2,6 +2,7 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
+//const User = require('./models/User');
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 
 const sequelize = new Sequelize(
@@ -39,10 +40,26 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Pokemon } = sequelize.models;
+const {  Pokemon ,
+         Region ,
+         Type,
+         User,
+         Zone} = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
+// Tabla intermedia de Users y Pokemons
+User.belongsToMany(Pokemon, {through : "UserPokemon"});
+Pokemon.belongsToMany(User, {through : "UserPokemon"});
+// Tabla intermedia de Pokemons y Types
+Pokemon.belongsToMany(Type , {through : "PokemonType"});
+Type.belongsToMany(Pokemon , {through : "PokemonType"});
+// Tabla intermadia Pokemon y Zone
+Pokemon.belongsToMany(Zone , {through : "PokemonZone"});
+Zone.belongsToMany(Pokemon , {through : "PokemonZone"});
+// Se crea la relacion de Zonas y Regiones
+Region.hasMany(Zone);
+Zone.belongsTo(Region);
 
 module.exports = {
    ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
