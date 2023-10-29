@@ -22,6 +22,11 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false
     },
+    sprite:{
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+
     //Se agregan columnas de estadisticas
     hp:{
       type: DataTypes.INTEGER,
