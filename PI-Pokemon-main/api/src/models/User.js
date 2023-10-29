@@ -14,14 +14,20 @@ module.exports = (sequelize) =>{
         },
         email:{
             type: DataTypes.STRING,
-            isEmail: true,
-            notNull: false,
-            unique: true
+            allowNull: false,
+            unique: true,
+            validate:{
+                isEmail: true,
+            }
+            // isEmail: true,
+            // unique: true
         },
         password:{
             type: DataTypes.STRING,
-            len: [6, 20],
-            notNull: false
+            allowNull: false,
+            validate:{
+                len: [6, 20]
+            },
         },
     })
 }
