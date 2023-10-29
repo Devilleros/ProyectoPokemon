@@ -43,8 +43,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 const {  Pokemon ,
          Region ,
          Type,
-         User,
-         Zone} = sequelize.models;
+         User,} = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
@@ -54,12 +53,12 @@ Pokemon.belongsToMany(User, {through : "UserPokemon"});
 // Tabla intermedia de Pokemons y Types
 Pokemon.belongsToMany(Type , {through : "PokemonType"});
 Type.belongsToMany(Pokemon , {through : "PokemonType"});
-// Tabla intermadia Pokemon y Zone
-Pokemon.belongsToMany(Zone , {through : "PokemonZone"});
-Zone.belongsToMany(Pokemon , {through : "PokemonZone"});
+// Tabla intermadia Pokemon y (Zone) Region
+Pokemon.belongsToMany(Region , {through : "PokemonRegion"});
+Region.belongsToMany(Pokemon , {through : "PokemonRegion"});
 // Se crea la relacion de Zonas y Regiones
-Region.hasMany(Zone);
-Zone.belongsTo(Region);
+// Region.hasMany(Zone);
+// Zone.belongsTo(Region);
 
 module.exports = {
    ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
