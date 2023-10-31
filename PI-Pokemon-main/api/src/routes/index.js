@@ -18,7 +18,9 @@ router.get("/pokemon/types", getTypes);
 router.get("/pokemon/regions", getRegions);
 router.get("/pokemon/pokemons", getPokemons);
 router.get("/pokemon/pokemons/:id", getPokemonById);
-router.post("/pokemon/create", createPokemon)
+router.get("/pokemon");
+router.get("/user");
+router.post("/pokemon/create", createPokemon);
 router.post("/user/create", createUser);
 
 

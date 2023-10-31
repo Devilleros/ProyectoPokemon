@@ -1,9 +1,20 @@
 import './App.css';
+import {Route , Routes , useLocation} from "react-router-dom";
+import FormLogin from "./components/FormLogin/FormLogin";
+import Nav from "./components/Nav/Nav"
+
 
 function App() {
+  const location = useLocation();
+
   return (
-    <div className="App">
-      <h1>Henry Pokemon</h1>
+    <div>
+      {
+         location.pathname !== "/" && <Nav/>
+      }
+      <Routes>
+        <Route path="/" element={<FormLogin/>}/>
+      </Routes>
     </div>
   );
 }
