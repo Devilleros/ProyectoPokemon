@@ -7,6 +7,7 @@ const {getPokemonById} = require("./handlers/getPokemonById");
 const {getPokemons} = require("./handlers/getPokemons")
 const {createUser} = require("./handlers/createUser");
 const {createPokemon} = require("./handlers/createPokemon");
+const {userLogin} = require("./handlers/userLogin")
 
 const router = Router();
 
@@ -19,7 +20,7 @@ router.get("/pokemon/regions", getRegions);
 router.get("/pokemon/pokemons", getPokemons);
 router.get("/pokemon/pokemons/:id", getPokemonById);
 router.get("/pokemon");
-router.get("/user");
+router.get("/user/login", userLogin);
 router.post("/pokemon/create", createPokemon);
 router.post("/user/create", createUser);
 
