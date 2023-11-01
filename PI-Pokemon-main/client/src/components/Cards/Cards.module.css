@@ -1,0 +1,6 @@
+.cardsContainer{
+    display: flex;
+    width: 60vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
