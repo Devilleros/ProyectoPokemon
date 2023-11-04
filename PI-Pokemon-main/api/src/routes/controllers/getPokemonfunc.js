@@ -1,4 +1,8 @@
 const getData = (apiJson) => {
+    let type2;
+    if(apiJson.types[1]){
+        type2= apiJson.types[1].type.name
+    }else type2 = false;
     return {
         idApi: apiJson.id,
         name: apiJson.species.name,
@@ -12,6 +16,8 @@ const getData = (apiJson) => {
         speed: apiJson.stats[5].base_stat,
         height: apiJson.height,
         weight: apiJson.weight,
+        type1: apiJson.types[0].type.name,
+        type2: type2,
     }
 }
 

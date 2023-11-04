@@ -13,13 +13,13 @@ const getPokemonById = async (req,res) =>{
             .then(({data}) => {
                 const pokemon = getData(data);
                 return res.status(200).json(pokemon);
-            }).catch(err => res.status(400).json({error : err.message}))
+            }).catch(err => res.status(401).json({error : err.message}))
         }else{
             try {
                 const pokemon = await Pokemon.findByPk(id);
                 res.status(200).send(pokemon)
             } catch (error) {
-                res.status(400).json({error : error.message});
+                res.status(402).json({error : error.message});
             }
             
 

@@ -1,5 +1,6 @@
 const {Pokemon} = require("../../db");
 const {Type} = require("../../db");
+
 const createPokemon = async (req,res) => {
     try {
         const {

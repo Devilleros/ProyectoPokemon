@@ -1,13 +1,15 @@
+//import { useState } from "react";
 import styles from "./Search.module.css"
 
 export default function Search (){
+
     return(
         <div className={styles.SearchDiv}>
-            <form action="" method="get">
-                <input type="text" placeholder="Busca a tu pokemon"/>
-                <button type="submit">🔍︎</button>
-                <button>✪</button>
+            <form >
+                <input type="search" placeholder="Busca a tu pokemon"/>
+                <button>Lupa</button>
             </form>
         </div>
     )
 }
+//<button type="submit" onClick={handleSubmit}>🔍︎</button>
