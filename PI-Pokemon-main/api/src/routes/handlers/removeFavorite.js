@@ -1,5 +1,4 @@
-const {User} = require("../../db");
-const {Pokemon} = require("../../db");
+const {User , Pokemon} = require("../../db");
 
 const removeFavorite = async (req,res)=>{
     const email = req.query.email;

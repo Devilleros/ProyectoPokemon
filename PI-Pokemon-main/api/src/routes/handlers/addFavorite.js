@@ -1,5 +1,4 @@
-const {User} = require("../../db");
-const {Pokemon} = require("../../db");
+const {User , Pokemon} = require("../../db");
 
 const addFavorite = async (req,res)=>{
     try {

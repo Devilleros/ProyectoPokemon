@@ -6,7 +6,6 @@ import {Route , Routes } from "react-router-dom";
 import FormLogin from "./views/FormLogin/FormLogin";
 //import Nav from "./components/Nav/Nav"
 import Home from "./views/Home/Home"
-import FormPokemon from './views/FormPokemon/FormPokemon';
 import FormRegister from './views/FormRegister/FormRegister';
 import Details from './views/Details/Details';
 import Error404 from './views/Error404/Error404';
@@ -24,7 +23,6 @@ function App() {
       {location.pathname === "/details-pokemon" && <Nav/>} */}
       <Routes>
         <Route path='/home' element={<Home/>}/>
-        <Route path='/create-pokemon' element={<FormPokemon/>}/>
         <Route path='/details-pokemon/:id' element={<Details/>}/>
         <Route path='*' element={<Error404/>}/>
         <Route path="/" element={<FormLogin/>}/>

@@ -9,14 +9,15 @@ import {
     DELETE_DETAILS, 
     DELETE_POKEMON, 
     POST_FAVORITE,
-    DELETE_FAVORITE
+    DELETE_FAVORITE,
+    FAV_SELECTOR
 } from "./actionsTypes"
 
 export function getPokemons(email){
     return async function(dispatch){
         const response1 = await axios("http://localhost:3001/pokemon/pokemons");
         const response2 = await axios.get(`http://localhost:3001/pokemon/favorites`,{params:{email: email}});
-        const response = {res1: response1.data, res2: response2.data.pokemons};
+        const response = {res1: response1.data, res2: response2.data};
         return dispatch({
             type: GET_POKEMONS,
             payload: response
@@ -104,5 +105,11 @@ export function removeFavorite(id , email) {
             type: DELETE_FAVORITE,
             payload: response.data
         })
+    }
+}
+
+export function setFavSelector(){
+    return{
+        type:FAV_SELECTOR
     }
 }

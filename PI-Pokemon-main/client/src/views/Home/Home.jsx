@@ -1,8 +1,8 @@
-import { useEffect} from "react";
+import { useEffect } from "react";
 //, useState 
 import {useSelector,useDispatch} from "react-redux";
 
-import { getPokemons,getPokemon, deletePokemon, addFavorite, removeFavorite} from "../../redux/actions";
+import { getPokemons,getPokemon, deletePokemon, addFavorite, removeFavorite , setFavSelector } from "../../redux/actions";
 
 import "./Home.module.css";
 import Nav from "../../components/Nav/Nav";
@@ -13,8 +13,8 @@ import Search from "../../components/Search/Search"
 export default function Home (){
     const dispatch = useDispatch();
     const allPokemon = useSelector((state)=> state.allPokemon);
-    //const user = useSelector((state) => state.user);
     const favPokemons = useSelector((state)=> state.favoritePokemon);
+    const favSelector = useSelector((state) => state.favSelector);
     const user = {email: "juan@gmail.com"};
 
     async function handleAddPokemon (){
@@ -29,12 +29,18 @@ export default function Home (){
 
     async function handleFavorite (id){
         await dispatch(addFavorite(id , user.email));
+        dispatch(getPokemons(user.email));
     }
 
     async function handleFavoriteRemove (id){
         await dispatch(removeFavorite(id , user.email));
+        dispatch(getPokemons(user.email));
     }
     
+    async function handleViewFavorites (){
+        await dispatch(setFavSelector())
+        dispatch(getPokemons(user.email));
+    }
     useEffect(()=>{
         const user = {email: "juan@gmail.com"};
         dispatch(getPokemons(user.email));
@@ -44,37 +50,11 @@ export default function Home (){
         <Nav/>
         <button onClick={handleAddPokemon}>🎁 Gacha</button>
         <Search/>
-        <button>✪</button>
-        <Cards allPokemons ={allPokemon}
+        <button onClick={handleViewFavorites}>{favSelector? "★ Favoritos":"Todos"}</button>
+        <Cards allPokemons ={favSelector? favPokemons : allPokemon}
         handleRemovePokemon={handleRemovePokemon} 
         handleFavorite={handleFavorite}
         handleFavoriteRemove={handleFavoriteRemove}
         favPokemons={favPokemons}/>
     </div>
 };
-
-
-
-//onClick={handleAddPokemon}
-//handleChange={handleChange} handleSearchButton={handleSearchButton}
-        //const allPokemonAPI = useSelector((state)=> state.allPokemonAPI)
-    
-        //const allPokemon = [...allPokemonBD , ...allPokemonAPI]
-    
-        //const [filtered ,setFiltered] = useState(allPokemon);
-        //const [stringSearch,setStringSearch] = useState("")
-    
-        // function handleChange(e){
-        //     e.preventDefault();
-        //     console.log(stringSearch);
-        //     setStringSearch(e.target.value);
-        //     };
-    
-        // function handleSearchButton(){
-        //     const filteredPokemons = allPokemon.filter((pok) => pok.name.toLowerCase().includes(stringSearch.toLowerCase()));
-        //     setFiltered(filteredPokemons);
-        // }
-    
-        // function handleAddPokemon(){
-        //     dispatch(getPokemon())
-        // }

@@ -5,8 +5,7 @@ export default function Card ({pokemon, handleRemovePokemon , handleFavorite , f
     const {sprite,name,idApi} = pokemon;
     const isFavorite = favPokemons.some((pok) => pok.name === name);
 
-    const favorite = isFavorite ? "<3" : "-";
-
+    const favorite = isFavorite ? "★" : "☆";
     const type1 = pokemon.types[0].name;
     let type2;
     if(pokemon.types[1]){
