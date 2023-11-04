@@ -2,6 +2,7 @@ import "./Details.module.css";
 import { useEffect } from "react";
 import { getPokemonDetail , clearDetails} from "../../redux/actions";
 import { useDispatch,useSelector } from "react-redux";
+import Nav from "../../components/Nav/Nav";
 
 export default function Details (){
 
@@ -20,6 +21,7 @@ export default function Details (){
             
     return(
         <div>
+            <Nav/>
             <h2>Details:</h2>
             <h1>nombre</h1>
             <h2>types: {pokemonDetail.type1} {pokemonDetail.type2 ? `${pokemonDetail.type2}`: ""}</h2>

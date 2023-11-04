@@ -1,13 +1,25 @@
 import axios from "axios"
 
-import { GET_POKEMONS , GET_ACCESS , USER_DATA, GET_POKEMON , GET_POKEMON_DETAILS, DELETE_DETAILS, DELETE_POKEMON} from "./actionsTypes"
+import { 
+    GET_POKEMONS ,
+    GET_ACCESS , 
+    USER_DATA, 
+    GET_POKEMON , 
+    GET_POKEMON_DETAILS, 
+    DELETE_DETAILS, 
+    DELETE_POKEMON, 
+    POST_FAVORITE,
+    DELETE_FAVORITE
+} from "./actionsTypes"
 
-export function getPokemons(){
+export function getPokemons(email){
     return async function(dispatch){
-        const response = await axios("http://localhost:3001/pokemon/pokemons")
+        const response1 = await axios("http://localhost:3001/pokemon/pokemons");
+        const response2 = await axios.get(`http://localhost:3001/pokemon/favorites`,{params:{email: email}});
+        const response = {res1: response1.data, res2: response2.data.pokemons};
         return dispatch({
             type: GET_POKEMONS,
-            payload: response.data
+            payload: response
         })
     }
 }
@@ -70,6 +82,26 @@ export function deletePokemon(id){
         const response = await axios.delete(`http://localhost:3001/pokemon/delete/${id}`)
         return dispatch({
             type: DELETE_POKEMON,
+            payload: response.data
+        })
+    }
+}
+
+export function addFavorite(id , email) {
+    return async function(dispatch){
+        const response = await axios.post(`http://localhost:3001/pokemon/favorite/add/${id}`, {email: email});
+        return dispatch({
+            type: POST_FAVORITE,
+            payload: response.data
+        })
+    }
+}
+
+export function removeFavorite(id , email) {
+    return async function(dispatch){
+        const response = await axios.delete(`http://localhost:3001/pokemon/favorite/remove/${id}`,{params: {email: email}});
+        return dispatch({
+            type: DELETE_FAVORITE,
             payload: response.data
         })
     }

@@ -1,12 +1,10 @@
-import { GET_POKEMONS , GET_ACCESS , USER_DATA, GET_POKEMON, GET_POKEMON_DETAILS, DELETE_DETAILS} from "../actions/actionsTypes";
+import { GET_POKEMONS , GET_ACCESS , USER_DATA, GET_POKEMON, GET_POKEMON_DETAILS, DELETE_DETAILS, DELETE_POKEMON, POST_FAVORITE, DELETE_FAVORITE} from "../actions/actionsTypes";
 
 let initialState = {
     user:{email: "",password:"",access:false},
     allPokemon:[],
     pokemonDetail:[],
-    //allPokemonApi:[],
-    //favoritePokemon:[],
-    //addFavorite: [],
+    favoritePokemon:[],
 };
 
 function rootReducer(state = initialState , action){
@@ -14,7 +12,8 @@ function rootReducer(state = initialState , action){
          case GET_POKEMONS:
             return{
                 ...state,
-                allPokemon: action.payload
+                allPokemon: action.payload.res1,
+                favoritePokemon: action.payload.res2,
             }
         case GET_ACCESS:
             return{
@@ -50,6 +49,25 @@ function rootReducer(state = initialState , action){
             return{
                 ...state,
                 pokemonDetail: []
+            }
+        }
+
+        case DELETE_POKEMON:{
+            return{
+                ...state,
+                allPokemon: action.payload.res1,
+            }
+        }
+        case POST_FAVORITE:{
+            return{
+                ...state,
+                favoritePokemon: action.payload.pokemons
+            }
+        }
+        case DELETE_FAVORITE:{
+            return{
+                ...state,
+                favoritePokemon: action.payload.pokemons
             }
         }
     
