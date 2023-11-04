@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 //, useState 
 import {useSelector,useDispatch} from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-import { getPokemons,getPokemon, deletePokemon, addFavorite, removeFavorite , setFavSelector } from "../../redux/actions";
+import { getPokemons,getPokemon, deletePokemon, addFavorite, removeFavorite , setFavSelector , setUser} from "../../redux/actions";
 
 import "./Home.module.css";
 import Nav from "../../components/Nav/Nav";
@@ -12,10 +13,12 @@ import Search from "../../components/Search/Search"
 
 export default function Home (){
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const allPokemon = useSelector((state)=> state.allPokemon);
     const favPokemons = useSelector((state)=> state.favoritePokemon);
     const favSelector = useSelector((state) => state.favSelector);
-    const user = {email: "juan@gmail.com"};
+    const user = useSelector((state)=> state.user);
+    //const user = {email: "juan@gmail.com"};
 
     async function handleAddPokemon (){
         await dispatch(getPokemon());
@@ -41,10 +44,22 @@ export default function Home (){
         await dispatch(setFavSelector())
         dispatch(getPokemons(user.email));
     }
-    useEffect(()=>{
-        const user = {email: "juan@gmail.com"};
-        dispatch(getPokemons(user.email));
-    },[dispatch])
+    // useEffect(()=>{
+    //     user.access? dispatch(getPokemons(user.email)): (navigate("/"));  
+    // },[dispatch])
+    useEffect(() => {
+        if (!user.access) {
+          navigate("/");
+        } else { 
+          dispatch(getPokemons(user.email));
+        }
+        return () => {
+          dispatch(setUser({ name: "email", value: "" }));
+          dispatch(setUser({ name: "password", value: "" }));
+          dispatch(setUser({ name: "access", value: false }));
+        };
+      }, [dispatch, user.access, navigate, user.email]);
+      
     
     return <div>
         <Nav/>

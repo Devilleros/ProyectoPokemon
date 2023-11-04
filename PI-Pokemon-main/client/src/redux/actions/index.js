@@ -10,7 +10,8 @@ import {
     DELETE_POKEMON, 
     POST_FAVORITE,
     DELETE_FAVORITE,
-    FAV_SELECTOR
+    FAV_SELECTOR,
+    LOG_OUT,
 } from "./actionsTypes"
 
 export function getPokemons(email){
@@ -111,5 +112,11 @@ export function removeFavorite(id , email) {
 export function setFavSelector(){
     return{
         type:FAV_SELECTOR
+    }
+}
+
+export function logOut(){
+    return{
+        type: LOG_OUT,
     }
 }

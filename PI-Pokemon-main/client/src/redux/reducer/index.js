@@ -7,7 +7,8 @@ import {
     DELETE_POKEMON, 
     POST_FAVORITE, 
     DELETE_FAVORITE, 
-    FAV_SELECTOR} from "../actions/actionsTypes";
+    FAV_SELECTOR,
+    LOG_OUT,} from "../actions/actionsTypes";
 
 let initialState = {
     user:{email: "",password:"",access:false},
@@ -85,7 +86,14 @@ function rootReducer(state = initialState , action){
                 ...state,
                 favSelector: !state.favSelector
             }
-    
+        case LOG_OUT:{
+            return{
+                ...state,
+                user: {email: "",password:"",access:false},
+                allPokemon:[],
+                favoritePokemon:[],
+            }
+        }
         default:
             return state;
     }

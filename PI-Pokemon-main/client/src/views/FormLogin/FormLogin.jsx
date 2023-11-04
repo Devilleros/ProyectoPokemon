@@ -1,24 +1,42 @@
-//import { useEffect } from "react"
 import { useDispatch,useSelector } from "react-redux"
 import { loginAccess , setUser } from "../../redux/actions"
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom"
 //import { useState } from "react";
 
 import styles from "./FormLogin.module.css" 
 
 export default function FormLogin (){
 const dispatch = useDispatch();
+const navigate = useNavigate();
 const user = useSelector((state)=>state.user);
-
+//const [toHome,setToHome] = useState(false);
 
 function handleChange (e){
-    dispatch(setUser({name : e.target.name , value: e.target.value}))
+    if(e.target.name === "email" || e.target.name === "password"){
+        dispatch(setUser({name : e.target.name , value: e.target.value}))
+    }
     //setErrors(validate({...user , [e.target.name]: e.target.value}))
 }
 
-function handleSubmit(e) {
+async function handleSubmit(e) {
     e.preventDefault();
-    dispatch(loginAccess(user))
+    await dispatch(loginAccess(user))
+    //user.access && navigate("/home")
 }
+
+useEffect(() => {
+    if (user.access) {
+      navigate("/home");
+    }
+  }, [navigate, user.access]);
+
+useEffect(()=>{
+    dispatch(setUser({name: "email", value:""}));
+    dispatch(setUser({name: "password", value:"",}));
+    dispatch(setUser({name: "access", value: false}));
+},[dispatch])
+
 
     return <form onSubmit={handleSubmit}>
         <div className={styles.formBox}>
