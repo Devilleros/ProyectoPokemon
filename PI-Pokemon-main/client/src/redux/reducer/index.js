@@ -20,7 +20,7 @@ let initialState = {
     favoritePokemon:[],
     filPokemon: [],
     favSelector: false,
-    filType: "",
+    filType: "All",
 };
 
 function rootReducer(state = initialState , action){
@@ -112,7 +112,6 @@ function rootReducer(state = initialState , action){
             }
         }
         case FILTER_TYPE:{
-            console.log(action.payload);
             return{
                 ...state,
                 filType: action.payload

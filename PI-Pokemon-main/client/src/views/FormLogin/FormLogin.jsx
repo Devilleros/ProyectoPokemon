@@ -1,28 +1,36 @@
 import { useDispatch,useSelector } from "react-redux"
 import { loginAccess , setUser } from "../../redux/actions"
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 import { useNavigate, Link} from "react-router-dom"
-//import { useState } from "react";
 
-import styles from "./FormLogin.module.css" 
+import styles from "./FormLogin.module.css"
+import { validate } from "./validate"; 
 
 export default function FormLogin (){
 const dispatch = useDispatch();
 const navigate = useNavigate();
 const user = useSelector((state)=>state.user);
-//const [toHome,setToHome] = useState(false);
+
+const [error, setError] = useState({
+    email: "",
+    password:""
+})
 
 function handleChange (e){
     if(e.target.name === "email" || e.target.name === "password"){
         dispatch(setUser({name : e.target.name , value: e.target.value}))
+        setError(validate({[e.target.name]: e.target.value}));
     }
-    //setErrors(validate({...user , [e.target.name]: e.target.value}))
 }
 
-async function handleSubmit(e) {
+async function handleSubmit(e) { 
     e.preventDefault();
-    await dispatch(loginAccess(user))
-    //user.access && navigate("/home")
+        if(error.email==="" && error.name==="" && error.password=== ""){
+            await dispatch(loginAccess(user))
+            navigate("/")
+        }else{
+            window.alert("Revisa los Datos")
+        }
 }
 
 useEffect(() => {
@@ -44,9 +52,9 @@ useEffect(()=>{
                 <h1>LOGIN</h1>
             </div>
             <div>
-                <label>correo:</label>
+                <label>correo:</label><label>{error.email}</label>
                 <input type="text" name="email" onChange={handleChange} value={user.email}/>
-                <label >Password:</label>
+                <label >Password:</label><label>{error.password}</label>
                 <input type="password" name="password" onChange={handleChange} value={user.password}/>
                 <button>login</button>
                 <Link to="/register">Registrarse</Link>
