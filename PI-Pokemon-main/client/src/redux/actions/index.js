@@ -13,6 +13,8 @@ import {
     FAV_SELECTOR,
     LOG_OUT,
     REGISTER_USER,
+    FILTER_POKEMON,
+    CLEAN_SEARCH,
 } from "./actionsTypes"
 
 export function getPokemons(email){
@@ -131,3 +133,27 @@ export function registerNewUser({name , email , password}){
         })
     }
 }
+
+export function filterPokemon(fil) {
+    return async function(dispatch) {
+        const response = await axios(`http://localhost:3001/pokemon/filter/${fil}`);
+        console.log(response.data);
+        if(response.data.length>0){
+            return dispatch({
+                type: FILTER_POKEMON,
+                payload: response.data
+            });
+        }else{
+            return dispatch({
+                type: FILTER_POKEMON,
+                payload: [{NN : "no hay coinsidencias"}]
+            });
+        }
+    };
+}
+
+export function cleanSearch(){
+    return{
+        type: CLEAN_SEARCH
+    };
+};

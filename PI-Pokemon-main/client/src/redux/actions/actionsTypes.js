@@ -11,3 +11,5 @@ export const DELETE_FAVORITE = "DELETE_FAVORITE";
 export const FAV_SELECTOR = "FAV_SELECTOR";
 export const LOG_OUT = "LOG_OUT";
 export const REGISTER_USER = "REGISTER_USER";
+export const FILTER_POKEMON = "FILTER_POKEMON";
+export const CLEAN_SEARCH = "CLEAN_SEARCH";

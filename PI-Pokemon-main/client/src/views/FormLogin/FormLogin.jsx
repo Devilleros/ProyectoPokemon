@@ -47,7 +47,7 @@ useEffect(()=>{
                 <label>correo:</label>
                 <input type="text" name="email" onChange={handleChange} value={user.email}/>
                 <label >Password:</label>
-                <input type="text" name="password" onChange={handleChange} value={user.password}/>
+                <input type="password" name="password" onChange={handleChange} value={user.password}/>
                 <button>login</button>
                 <Link to="/register">Registrarse</Link>
             </div>

@@ -34,7 +34,7 @@ export default function FormRegister (){
             await dispatch(registerNewUser(form));
             navigate("/")
         }else{
-            window.alert("escriba bien")
+            window.alert("Diligenciar correctamente el formulario")
         }
     }
 

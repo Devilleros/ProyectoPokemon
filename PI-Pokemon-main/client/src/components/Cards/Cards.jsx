@@ -3,8 +3,8 @@ import Card from "../Card/Card"
 
 import styles from "./Cards.module.css"
 
-export default function Cards({allPokemons ,  handleRemovePokemon , handleFavorite , favPokemons,handleFavoriteRemove}){
-    const pokemons = allPokemons;
+export default function Cards({pokemons ,  handleRemovePokemon , handleFavorite , favPokemons,handleFavoriteRemove,filPokemons}){
+    //const pokemons = allPokemons;
     return(<div >
         <div>Cartas:</div>
         <div className={styles.cardsContainer}>
@@ -15,6 +15,7 @@ export default function Cards({allPokemons ,  handleRemovePokemon , handleFavori
                 handleFavorite={handleFavorite} 
                 favPokemons={favPokemons}
                 handleFavoriteRemove={handleFavoriteRemove}
+                filPokemons={filPokemons}
                 />)
         }
 

@@ -3,12 +3,21 @@ import { useEffect } from "react";
 import {useSelector,useDispatch} from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { getPokemons,getPokemon, deletePokemon, addFavorite, removeFavorite , setFavSelector } from "../../redux/actions";
+import { 
+    getPokemons,
+    getPokemon, 
+    deletePokemon, 
+    addFavorite, 
+    removeFavorite , 
+    setFavSelector , 
+    filterPokemon,
+    cleanSearch 
+} from "../../redux/actions";
 
 import "./Home.module.css";
 import Nav from "../../components/Nav/Nav";
 import Cards from "../../components/Cards/Cards";
-import Search from "../../components/Search/Search"
+import Search from "../../components/Search/Search";
 
 
 export default function Home (){
@@ -17,8 +26,8 @@ export default function Home (){
     const allPokemon = useSelector((state)=> state.allPokemon);
     const favPokemons = useSelector((state)=> state.favoritePokemon);
     const favSelector = useSelector((state) => state.favSelector);
+    const filPokemons = useSelector((state)=> state.filPokemon);
     const user = useSelector((state)=> state.user);
-    //const user = {email: "juan@gmail.com"};
 
     async function handleAddPokemon (){
         await dispatch(getPokemon());
@@ -44,32 +53,34 @@ export default function Home (){
         await dispatch(setFavSelector())
         dispatch(getPokemons(user.email));
     }
-    // useEffect(()=>{
-    //     user.access? dispatch(getPokemons(user.email)): (navigate("/"));  
-    // },[dispatch])
+    
+    function handleSearch(stringSearch){
+        if(stringSearch !== ""){
+            dispatch(filterPokemon(stringSearch));
+        }else{
+            dispatch(cleanSearch());
+        }
+    }
+
+    
     useEffect(() => {
         if (!user.access) {
           navigate("/");
         } else { 
           dispatch(getPokemons(user.email));
         }
-        // return () => {
-        //   dispatch(setUser({ name: "email", value: "" }));
-        //   dispatch(setUser({ name: "password", value: "" }));
-        //   dispatch(setUser({ name: "access", value: false }));
-        // };
       }, [dispatch, user.access, navigate, user.email]);
-      
     
     return <div>
         <Nav/>
         <button onClick={handleAddPokemon}>🎁 Gacha</button>
-        <Search/>
+        <Search handleSearch={handleSearch}/>
         <button onClick={handleViewFavorites}>{favSelector? "★ Favoritos":"Todos"}</button>
-        <Cards allPokemons ={favSelector? favPokemons : allPokemon}
+        <Cards pokemons ={favSelector? favPokemons : allPokemon}
         handleRemovePokemon={handleRemovePokemon} 
         handleFavorite={handleFavorite}
         handleFavoriteRemove={handleFavoriteRemove}
-        favPokemons={favPokemons}/>
+        favPokemons={favPokemons}
+        filPokemons={filPokemons}/>
     </div>
 };

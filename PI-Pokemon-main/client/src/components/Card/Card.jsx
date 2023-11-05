@@ -1,11 +1,8 @@
 import styles from "./Card.module.css"
 import { Link } from "react-router-dom";
 
-export default function Card ({pokemon, handleRemovePokemon , handleFavorite , favPokemons , handleFavoriteRemove}){
+export default function Card ({pokemon, handleRemovePokemon , handleFavorite , favPokemons , handleFavoriteRemove, filPokemons}){
     const {sprite,name,idApi} = pokemon;
-    const isFavorite = favPokemons.some((pok) => pok.name === name);
-
-    const favorite = isFavorite ? "★" : "☆";
     const type1 = pokemon.types[0].name;
     let type2;
     if(pokemon.types[1]){
@@ -14,11 +11,23 @@ export default function Card ({pokemon, handleRemovePokemon , handleFavorite , f
         type2 = ""
     }
     
+    if(filPokemons.length > 0){
+        let isFiltered = filPokemons.some((pok) => pok.name === name)
+        if(!isFiltered){
+            return null
+        }
+    }
+
+    const isFavorite = favPokemons.some((pok) => pok.name === name);
+    const favorite = isFavorite ? "★" : "☆";
+
+    
 
     function handleRemove(){
         handleRemovePokemon(idApi);
     }
-    function handleFavoriteButton(){
+    function handleFavoriteButton(e){
+        e.preventDefault()
         isFavorite ? handleFavoriteRemove(idApi) : handleFavorite(idApi)
     }
 
@@ -35,7 +44,6 @@ export default function Card ({pokemon, handleRemovePokemon , handleFavorite , f
                     <div className={styles.types}>
                         <h4 className={styles.type}>{type1} {type2}</h4>
                     </div>
-
                 </div>
             </div>
         </Link>

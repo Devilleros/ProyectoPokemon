@@ -8,13 +8,16 @@ import {
     POST_FAVORITE, 
     DELETE_FAVORITE, 
     FAV_SELECTOR,
-    LOG_OUT,} from "../actions/actionsTypes";
+    LOG_OUT,
+    FILTER_POKEMON,
+    CLEAN_SEARCH,} from "../actions/actionsTypes";
 
 let initialState = {
     user:{email: "",password:"",access:false},
     allPokemon:[],
     pokemonDetail:[],
     favoritePokemon:[],
+    filPokemon: [],
     favSelector: false,
 };
 
@@ -92,6 +95,18 @@ function rootReducer(state = initialState , action){
                 user: {email: "",password:"",access:false},
                 allPokemon:[],
                 favoritePokemon:[],
+            }
+        }
+        case FILTER_POKEMON:{
+            return{
+                ...state,
+                filPokemon: action.payload
+            }
+        }
+        case CLEAN_SEARCH:{
+            return{
+                ...state,
+                filPokemon: []
             }
         }
         default:

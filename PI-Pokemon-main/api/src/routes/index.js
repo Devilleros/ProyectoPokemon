@@ -12,6 +12,7 @@ const {deletePokemon} = require("./handlers/deletePokemon");
 const {addFavorite} = require("./handlers/addFavorite");
 const {getFavorites} = require("./handlers/getFavorites");
 const {removeFavorite} = require("./handlers/removeFavorite");
+const {getFiltered} = require("./handlers/getFiltered");
 
 const router = Router();
 
@@ -26,6 +27,7 @@ router.get("/pokemon/pokemons/:id", getPokemonById);
 router.get("/pokemon");
 router.get("/pokemon/favorites", getFavorites)
 router.get("/user/login", userLogin);
+router.get("/pokemon/filter/:filter",getFiltered)
 router.post("/pokemon/create", createPokemon);
 router.post("/user/create", createUser);
 router.post("/pokemon/favorite/add/:id", addFavorite);
