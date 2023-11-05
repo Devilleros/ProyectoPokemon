@@ -13,3 +13,4 @@ export const LOG_OUT = "LOG_OUT";
 export const REGISTER_USER = "REGISTER_USER";
 export const FILTER_POKEMON = "FILTER_POKEMON";
 export const CLEAN_SEARCH = "CLEAN_SEARCH";
+export const FILTER_TYPE = "FILTER_TYPE";

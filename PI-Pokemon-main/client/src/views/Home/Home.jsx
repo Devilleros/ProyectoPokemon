@@ -11,7 +11,8 @@ import {
     removeFavorite , 
     setFavSelector , 
     filterPokemon,
-    cleanSearch 
+    cleanSearch,
+    filType
 } from "../../redux/actions";
 
 import "./Home.module.css";
@@ -28,6 +29,7 @@ export default function Home (){
     const favSelector = useSelector((state) => state.favSelector);
     const filPokemons = useSelector((state)=> state.filPokemon);
     const user = useSelector((state)=> state.user);
+    const filterType = useSelector((state)=> state.filType);
 
     async function handleAddPokemon (){
         await dispatch(getPokemon());
@@ -62,6 +64,10 @@ export default function Home (){
         }
     }
 
+    function handleFilType(typeSelect){
+        dispatch(filType(typeSelect));
+    }
+
     
     useEffect(() => {
         if (!user.access) {
@@ -74,7 +80,7 @@ export default function Home (){
     return <div>
         <Nav/>
         <button onClick={handleAddPokemon}>🎁 Gacha</button>
-        <Search handleSearch={handleSearch}/>
+        <Search handleSearch={handleSearch} handleFilType={handleFilType}/>
         <button onClick={handleViewFavorites}>{favSelector? "★ Favoritos":"Todos"}</button>
         <Cards pokemons ={allPokemon}
         handleRemovePokemon={handleRemovePokemon} 
@@ -82,6 +88,7 @@ export default function Home (){
         handleFavoriteRemove={handleFavoriteRemove}
         favPokemons={favPokemons}
         filPokemons={filPokemons}
-        favSelector={favSelector}/>
+        favSelector={favSelector}
+        filterType={filterType}/>
     </div>
 };

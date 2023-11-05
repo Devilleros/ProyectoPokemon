@@ -1,7 +1,7 @@
 import styles from "./Card.module.css"
 import { Link } from "react-router-dom";
 
-export default function Card ({pokemon, handleRemovePokemon , handleFavorite , favPokemons , handleFavoriteRemove, filPokemons, favSelector}){
+export default function Card ({pokemon, handleRemovePokemon , handleFavorite , favPokemons , handleFavoriteRemove, filPokemons, favSelector,filterType}){
     const {sprite,name,idApi} = pokemon;
     const type1 = pokemon.types[0].name;
     let type2;
@@ -9,6 +9,16 @@ export default function Card ({pokemon, handleRemovePokemon , handleFavorite , f
         type2 = pokemon.types[1].name;
     }else{
         type2 = ""
+    }
+
+    if(filterType !== "All"){
+        if(type2 !== ""){
+            if(type1 !== filterType && type2 !== filterType){
+                return null;
+            }
+        }else if(type1 !== filterType){
+            return null;
+        }
     }
     
     if(filPokemons.length > 0){
@@ -20,7 +30,7 @@ export default function Card ({pokemon, handleRemovePokemon , handleFavorite , f
 
     const isFavorite = favPokemons.some((pok) => pok.name === name);
     const favorite = isFavorite ? "★" : "☆";
-    if(favSelector && !isFavorite){ return null }    
+    if(favSelector && !isFavorite){ return null }
 
     function handleRemove(){
         handleRemovePokemon(idApi);

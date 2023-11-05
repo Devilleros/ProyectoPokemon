@@ -15,6 +15,7 @@ import {
     REGISTER_USER,
     FILTER_POKEMON,
     CLEAN_SEARCH,
+    FILTER_TYPE,
 } from "./actionsTypes"
 
 export function getPokemons(email){
@@ -156,3 +157,10 @@ export function cleanSearch(){
         type: CLEAN_SEARCH
     };
 };
+
+export function filType(typeSelect){
+    return{
+        type: FILTER_TYPE,
+        payload: typeSelect
+    };
+}

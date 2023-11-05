@@ -10,7 +10,8 @@ import {
     FAV_SELECTOR,
     LOG_OUT,
     FILTER_POKEMON,
-    CLEAN_SEARCH,} from "../actions/actionsTypes";
+    CLEAN_SEARCH,
+    FILTER_TYPE,} from "../actions/actionsTypes";
 
 let initialState = {
     user:{email: "",password:"",access:false},
@@ -19,6 +20,7 @@ let initialState = {
     favoritePokemon:[],
     filPokemon: [],
     favSelector: false,
+    filType: "",
 };
 
 function rootReducer(state = initialState , action){
@@ -107,6 +109,13 @@ function rootReducer(state = initialState , action){
             return{
                 ...state,
                 filPokemon: []
+            }
+        }
+        case FILTER_TYPE:{
+            console.log(action.payload);
+            return{
+                ...state,
+                filType: action.payload
             }
         }
         default:
