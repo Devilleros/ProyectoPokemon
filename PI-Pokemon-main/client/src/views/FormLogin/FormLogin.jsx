@@ -1,7 +1,7 @@
 import { useDispatch,useSelector } from "react-redux"
 import { loginAccess , setUser } from "../../redux/actions"
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link} from "react-router-dom"
 //import { useState } from "react";
 
 import styles from "./FormLogin.module.css" 
@@ -49,6 +49,7 @@ useEffect(()=>{
                 <label >Password:</label>
                 <input type="text" name="password" onChange={handleChange} value={user.password}/>
                 <button>login</button>
+                <Link to="/register">Registrarse</Link>
             </div>
         </div>
     </form>

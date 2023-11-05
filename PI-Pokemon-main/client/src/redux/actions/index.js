@@ -12,6 +12,7 @@ import {
     DELETE_FAVORITE,
     FAV_SELECTOR,
     LOG_OUT,
+    REGISTER_USER,
 } from "./actionsTypes"
 
 export function getPokemons(email){
@@ -118,5 +119,15 @@ export function setFavSelector(){
 export function logOut(){
     return{
         type: LOG_OUT,
+    }
+}
+
+export function registerNewUser({name , email , password}){
+    return async function (dispatch){
+        const response = await axios.post("http://localhost:3001/user/create", {name: name ,email: email ,password: password})
+        return dispatch({
+            type: REGISTER_USER,
+            payload: response.data
+        })
     }
 }

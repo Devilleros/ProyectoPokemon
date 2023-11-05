@@ -14,6 +14,7 @@ export default function Nav (){
 
     return <div className={styles.navDiv}>
         <button><Link to="/home">HOME</Link></button>
+        <h1>ESTA PAGINA ES SERIA</h1>
         <div>               
             <button onClick={handleLogOut}>LogOut</button>
             <button>info</button>

@@ -26,7 +26,14 @@ module.exports = (sequelize) =>{
             type: DataTypes.STRING,
             allowNull: false,
             validate:{
-                len: [6, 20]
+                len: [6, 20],
+                isStrongPassword: function (value) {
+                    // Utiliza una expresión regular para verificar la contraseña
+                    if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=!]).{6,20}$/.test(value)) {
+                      throw new Error('La contraseña debe contener al menos una mayúscula, una minúscula, un número y un carácter especial (@#$%^&+=!)');
+                    }
+                  }
+                
             },
         },
     })

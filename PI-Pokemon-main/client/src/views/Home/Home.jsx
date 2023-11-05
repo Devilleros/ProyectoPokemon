@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import {useSelector,useDispatch} from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { getPokemons,getPokemon, deletePokemon, addFavorite, removeFavorite , setFavSelector , setUser} from "../../redux/actions";
+import { getPokemons,getPokemon, deletePokemon, addFavorite, removeFavorite , setFavSelector } from "../../redux/actions";
 
 import "./Home.module.css";
 import Nav from "../../components/Nav/Nav";
@@ -53,11 +53,11 @@ export default function Home (){
         } else { 
           dispatch(getPokemons(user.email));
         }
-        return () => {
-          dispatch(setUser({ name: "email", value: "" }));
-          dispatch(setUser({ name: "password", value: "" }));
-          dispatch(setUser({ name: "access", value: false }));
-        };
+        // return () => {
+        //   dispatch(setUser({ name: "email", value: "" }));
+        //   dispatch(setUser({ name: "password", value: "" }));
+        //   dispatch(setUser({ name: "access", value: false }));
+        // };
       }, [dispatch, user.access, navigate, user.email]);
       
     

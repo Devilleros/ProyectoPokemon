@@ -10,3 +10,4 @@ export const POST_FAVORITE = "POST_FAVORITE";
 export const DELETE_FAVORITE = "DELETE_FAVORITE";
 export const FAV_SELECTOR = "FAV_SELECTOR";
 export const LOG_OUT = "LOG_OUT";
+export const REGISTER_USER = "REGISTER_USER";
