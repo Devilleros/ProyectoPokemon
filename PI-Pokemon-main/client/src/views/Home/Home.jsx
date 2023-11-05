@@ -76,11 +76,12 @@ export default function Home (){
         <button onClick={handleAddPokemon}>🎁 Gacha</button>
         <Search handleSearch={handleSearch}/>
         <button onClick={handleViewFavorites}>{favSelector? "★ Favoritos":"Todos"}</button>
-        <Cards pokemons ={favSelector? favPokemons : allPokemon}
+        <Cards pokemons ={allPokemon}
         handleRemovePokemon={handleRemovePokemon} 
         handleFavorite={handleFavorite}
         handleFavoriteRemove={handleFavoriteRemove}
         favPokemons={favPokemons}
-        filPokemons={filPokemons}/>
+        filPokemons={filPokemons}
+        favSelector={favSelector}/>
     </div>
 };

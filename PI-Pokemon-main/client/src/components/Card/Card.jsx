@@ -1,7 +1,7 @@
 import styles from "./Card.module.css"
 import { Link } from "react-router-dom";
 
-export default function Card ({pokemon, handleRemovePokemon , handleFavorite , favPokemons , handleFavoriteRemove, filPokemons}){
+export default function Card ({pokemon, handleRemovePokemon , handleFavorite , favPokemons , handleFavoriteRemove, filPokemons, favSelector}){
     const {sprite,name,idApi} = pokemon;
     const type1 = pokemon.types[0].name;
     let type2;
@@ -20,14 +20,12 @@ export default function Card ({pokemon, handleRemovePokemon , handleFavorite , f
 
     const isFavorite = favPokemons.some((pok) => pok.name === name);
     const favorite = isFavorite ? "★" : "☆";
-
-    
+    if(favSelector && !isFavorite){ return null }    
 
     function handleRemove(){
         handleRemovePokemon(idApi);
     }
-    function handleFavoriteButton(e){
-        e.preventDefault()
+    function handleFavoriteButton(){
         isFavorite ? handleFavoriteRemove(idApi) : handleFavorite(idApi)
     }
 

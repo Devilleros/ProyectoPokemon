@@ -9,7 +9,6 @@ export default function Search ({handleSearch}){
     function handleChange(e){
         e.preventDefault();
         setStringSearch(e.target.value);
-        console.log(stringSearch);
     }
 
     function handleSearchLocal(e){
