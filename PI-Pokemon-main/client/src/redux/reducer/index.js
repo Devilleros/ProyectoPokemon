@@ -36,7 +36,7 @@ function rootReducer(state = initialState , action){
                 ...state,
                 user: {
                     ...state.user,
-                    access: true
+                    access: action.payload.access
                 }
             }
         case USER_DATA:{

@@ -9,7 +9,7 @@ const userLogin = async (req , res)=>{
         if(user){
             res.status(200).send({access:true});
         }else{
-            res.status(401).send("No existe este usuario");
+            res.status(200).send({access:false});
         }
     } catch (error) {
         res.status(400).json({error : error.message});
