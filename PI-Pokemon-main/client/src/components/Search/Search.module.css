@@ -1,0 +1,15 @@
+.btnSrc{
+    width: 15%;
+    height: 37px;
+    padding: 10px;
+    padding-top: 8px;
+    background-color:#717744;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.search{
+    width: 80%;
+    margin-right: 10px;
+}

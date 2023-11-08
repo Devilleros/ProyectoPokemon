@@ -1,6 +1,23 @@
 .cardsContainer{
     display: flex;
-    width: 60vw;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+@media (max-width: 1100px) {
+    .cardsContainer {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media (max-width: 830px) {
+    .cardsContainer {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 550px) {
+    .cardsContainer {
+        grid-template-columns: 1fr;
+    }
 }

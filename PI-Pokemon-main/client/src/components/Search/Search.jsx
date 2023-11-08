@@ -24,8 +24,8 @@ export default function Search ({handleSearch, handleFilType}){
     return(
         <div className={styles.SearchDiv}>
             <form >
-                <input type="search" placeholder="Busca a tu pokemon" value={stringSearch} onChange={handleChange}/>
-                <button onClick={handleSearchLocal}>🔍︎</button>
+                <input className={styles.search} type="search" placeholder="Busca a tu pokemon" value={stringSearch} onChange={handleChange}/>
+                <button onClick={handleSearchLocal} className={styles.btnSrc}>🔍︎</button>
                 <select name="" id="typeSelect" onChange={handleSelector}>
                     <option value="All">All types</option>
                     <option value="bug">bug</option>

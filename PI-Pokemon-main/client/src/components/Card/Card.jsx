@@ -29,7 +29,7 @@ export default function Card ({pokemon, handleRemovePokemon , handleFavorite , f
     }
 
     const isFavorite = favPokemons.some((pok) => pok.name === name);
-    const favorite = isFavorite ? "★" : "☆";
+    const favorite = isFavorite ? "★" : "✰";
     if(favSelector && !isFavorite){ return null }
 
     function handleRemove(){
@@ -40,22 +40,30 @@ export default function Card ({pokemon, handleRemovePokemon , handleFavorite , f
     }
 
     return(
-    <div>
-        <button onClick={handleFavoriteButton}>{favorite}</button>
-        <button onClick={handleRemove}>x</button>
-        <Link to={`/details-pokemon/${idApi}`} >
-            <div className={styles.cardContainer}>
-                <h4 className={styles.sprite}><img src={sprite} alt="img" className="image"/></h4>
-                <div className={styles.info}>
-                    
-                    <h3 className={styles.name}>{name}</h3>
-                    <div className={styles.types}>
-                        <h4 className={styles.type}>{type1} {type2}</h4>
-                    </div>
+        <div className={styles.divCard}>
+            <div className={styles.divButtons}>
+                <div className={styles.divButFav}>
+                    <button onClick={handleFavoriteButton}>{favorite}</button>
+                </div>
+                <div className={styles.divButDel}>
+                    <button onClick={handleRemove}>x</button>
                 </div>
             </div>
-        </Link>
-    </div>
+            <div className={styles.divLink}>
+                <Link to={`/details-pokemon/${idApi}`} style={{ textDecoration: 'none', color: '#000' }}>
+                    <div className={styles.divName}>
+                        <h3 className={styles.name}>{name}</h3>
+                    </div>
+                    <div className={styles.divSprite}>
+                        <img src={sprite} alt="img" className="image"/>
+                    </div>
+                    <div className={styles.types}>
+                        <div className={styles.types}>
+                            <h4 className={styles.type}>{type1} {type2? `/ ${type2}`: ``}</h4>
+                        </div>
+                    </div>
+                </Link>
+            </div>
+        </div>
     )
 }
-//

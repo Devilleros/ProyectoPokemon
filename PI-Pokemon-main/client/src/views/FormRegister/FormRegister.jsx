@@ -3,7 +3,7 @@ import style from "./FormRegister.module.css"
 import { registerNewUser } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 import { validate } from "./validate";
-import { useNavigate } from "react-router-dom";
+import { useNavigate , Link } from "react-router-dom";
 
 export default function FormRegister (){
 
@@ -18,7 +18,7 @@ export default function FormRegister (){
 
     const [error, setError] = useState({
         email: "",
-        name:"",
+        name:"Llenar espacios",
         password:""
     })
 
@@ -51,6 +51,7 @@ export default function FormRegister (){
                 <label className={style.errorMessage}>{error.password ? error.password : ""}</label>
                 <input type="password" name="password" onChange={handleChange} value={form.password} className={style.registerInput}/>
                 <button  onClick={handleRegister} className={style.registerButton}>Registrarse</button>
+                <Link to="/">{"<<"} Regresar a Inicio de sesion</Link>
             </form>
         </div>
     )

@@ -15,7 +15,7 @@ import {
     filType
 } from "../../redux/actions";
 
-import "./Home.module.css";
+import style from "./Home.module.css";
 import Nav from "../../components/Nav/Nav";
 import Cards from "../../components/Cards/Cards";
 import Search from "../../components/Search/Search";
@@ -77,18 +77,24 @@ export default function Home (){
         }
       }, [dispatch, user.access, navigate, user.email]);
     
-    return <div>
+    return <div className={style.divHome}>
         <Nav/>
-        <button onClick={handleAddPokemon}>🎁 Gacha</button>
-        <Search handleSearch={handleSearch} handleFilType={handleFilType}/>
-        <button onClick={handleViewFavorites}>{favSelector? "★ Favoritos":"Todos"}</button>
-        <Cards pokemons ={allPokemon}
-        handleRemovePokemon={handleRemovePokemon} 
-        handleFavorite={handleFavorite}
-        handleFavoriteRemove={handleFavoriteRemove}
-        favPokemons={favPokemons}
-        filPokemons={filPokemons}
-        favSelector={favSelector}
-        filterType={filterType}/>
+        <div className={style.divUp}>
+            <button onClick={handleAddPokemon} className={style.butGacha}>🎁 Gacha</button>
+            <div className={style.divSearch}>
+                <Search handleSearch={handleSearch} handleFilType={handleFilType}/>
+            </div>
+            <button onClick={handleViewFavorites} className={style.butFav}>{favSelector? "★ Favoritos":"Todos"}</button>
+        </div>
+        <div className={style.divCards}>
+            <Cards pokemons ={allPokemon}
+            handleRemovePokemon={handleRemovePokemon} 
+            handleFavorite={handleFavorite}
+            handleFavoriteRemove={handleFavoriteRemove}
+            favPokemons={favPokemons}
+            filPokemons={filPokemons}
+            favSelector={favSelector}
+            filterType={filterType}/>
+        </div>
     </div>
 };

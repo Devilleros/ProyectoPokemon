@@ -11,7 +11,7 @@ export default function FormLogin (){
     const navigate = useNavigate();
     
     const [error, setError] = useState({
-        email: "",
+        email: "Llenar los espacios",
         password:""
     })
     
@@ -55,16 +55,16 @@ export default function FormLogin (){
 
     return (<form onSubmit={handleSubmit}>
         <div className={styles.formBox}>
-            <div>
-                <h1>LOGIN</h1>
+            <div className={styles.divTitle}>
+                <h1>Inicia Sesión</h1>
             </div>
-            <div>
-                <label>correo:</label><label>{error.email}</label>
+            <div className={styles.divData}>
+                <label>correo: </label><label className={styles.errorMessage}>{error.email}</label>
                 <input type="text" name="email" onChange={handleChange} value={form.email}/>
-                <label >Password:</label><label>{error.password}</label>
+                <label >Password: </label><label className={styles.errorMessage}>{error.password}</label>
                 <input type="password" name="password" onChange={handleChange} value={form.password}/>
-                <button type="submit">login</button>
-                <Link to="/register">Registrarse</Link>
+                <button type="submit" className={styles.loginButton}>Iniciar sesión</button>
+                <Link to="/register">Registrarse{">>"}</Link>
             </div>
         </div>
     </form>

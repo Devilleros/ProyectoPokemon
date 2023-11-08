@@ -5,7 +5,6 @@ import styles from "./Cards.module.css"
 
 export default function Cards({pokemons ,  handleRemovePokemon , handleFavorite , favPokemons,handleFavoriteRemove,filPokemons,favSelector,filterType}){
     return(<div >
-        <div>Cartas:</div>
         <div className={styles.cardsContainer}>
         {
             pokemons?.map(pokemon => <Card pokemon={pokemon} 
