@@ -1,9 +1,25 @@
 .divDetail {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 20px;
+}
+@media (max-width: 800px) {
+  .divDetail{
+      flex-direction: column;
+      align-items: center;
   }
+}
+
+.nameImg{
+  text-align: center;
+}
+
+p{
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
   
 
   

@@ -29,21 +29,21 @@ export default function Details (){
         <div>
             <Nav/>
             <div className={styles.divDetail}>
-                <div>
+                <div className={styles.nameImg}>
                     <h1>{pokemonDetail.name}</h1>
                     <img src={pokemonDetail.image} alt="Cargando..." />
                 </div>
                 <div>
-                    <h2>types: {pokemonDetail.type1} {pokemonDetail.type2 ? `, ${pokemonDetail.type2}`: ""}</h2>
-                    <p>id Api: {pokemonDetail.idApi}</p>
-                    <p>hp: {pokemonDetail.hp}</p>
-                    <p>ataque: {pokemonDetail.attack}</p>
-                    <p>defensa :{pokemonDetail.defense}</p>
-                    <p>Ataque Sp: {pokemonDetail.specialAttack}</p>
-                    <p>Defensa Sp:{pokemonDetail.specialDefense}</p>
-                    <p>velocidad: {pokemonDetail.speed}</p>
-                    <p>Altura: {(pokemonDetail.height/10).toFixed(1)} m</p>
-                    <p>Peso: {(pokemonDetail.weight/10).toFixed(1)} kg</p>
+                    <p><h4>types: </h4> {pokemonDetail.type1} {pokemonDetail.type2 ? `, ${pokemonDetail.type2}`: ""}</p>
+                    <p><h4>id Api: </h4>{pokemonDetail.idApi}</p>
+                    <p><h4>hp: </h4>{pokemonDetail.hp}</p>
+                    <p><h4>ataque: </h4>{pokemonDetail.attack}</p>
+                    <p><h4>defensa: </h4>{pokemonDetail.defense}</p>
+                    <p><h4>Ataque Sp: </h4>{pokemonDetail.specialAttack}</p>
+                    <p><h4>Defensa Sp:</h4>{pokemonDetail.specialDefense}</p>
+                    <p><h4>velocidad: </h4>{pokemonDetail.speed}</p>
+                    <p><h4>Altura: </h4>{(pokemonDetail.height/10).toFixed(1)} m</p>
+                    <p><h4>Peso: </h4>{(pokemonDetail.weight/10).toFixed(1)} kg</p>
                 </div>
             </div>
         </div>

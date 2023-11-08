@@ -36,7 +36,7 @@ export default function FormLogin (){
             await dispatch(setUser({name: "password", value: form.password}));
             await dispatch(loginAccess(user));
         }else{
-            window.alert("Revisa los Datos")
+            window.alert("Revisa los Datos");
         }
     }
 

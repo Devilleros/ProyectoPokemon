@@ -11,7 +11,8 @@ import {
     LOG_OUT,
     FILTER_POKEMON,
     CLEAN_SEARCH,
-    FILTER_TYPE,} from "../actions/actionsTypes";
+    FILTER_TYPE,
+    REGISTER_USER,} from "../actions/actionsTypes";
 
 let initialState = {
     user:{email: "",password:"",access:false},
@@ -115,6 +116,12 @@ function rootReducer(state = initialState , action){
             return{
                 ...state,
                 filType: action.payload
+            }
+        }
+        case REGISTER_USER:{
+            console.log(action.payload);
+            return{
+                ...state
             }
         }
         default:

@@ -16,9 +16,8 @@ export default function Nav (){
         <button>
             <Link to="/home" style={{ textDecoration: 'none', color: '#000' }}>HOME</Link>
         </button>
-        <div className={styles.divBut}>               
+        <div className={styles.divBut}>
             <button onClick={handleLogOut}>LogOut</button>
-            <button>info</button>
         </div>
     </div>
 }
